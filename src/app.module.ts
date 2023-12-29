@@ -5,12 +5,16 @@ import { database } from './config';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { AppFilter, AppIntercepter, AppPipe } from './modules/core/providers';
 import { DatabaseModule } from '~/modules/database/database.module';
+import { UserModule } from './modules/user/user.module';
+import { RbacModule } from './modules/rabc/rabc.module';
 
 
 @Module({
   imports: [
     ContentModule.forRoot(),
     CoreModule.forRoot(),
+    UserModule.forRoot(),
+    RbacModule.forRoot(),
     DatabaseModule.forRoot(database),
   ],
   providers: [

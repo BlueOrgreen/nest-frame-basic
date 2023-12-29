@@ -6,8 +6,11 @@ import {
     DeleteDateColumn,
     Entity,
     Index,
+    ManyToOne,
     PrimaryColumn,
+    Relation,
 } from 'typeorm';
+import { UserEntity } from '~/modules/user/entities';
 
 @Exclude()
 @Entity('content_todos')
@@ -48,4 +51,11 @@ export class TodoEntity extends BaseEntity {
     })
     deletedAt: Date;
 
+    @Expose()
+    @ManyToOne(() => UserEntity, (user) => user.todos, {
+        nullable: false,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
+    author: Relation<UserEntity>;
 }

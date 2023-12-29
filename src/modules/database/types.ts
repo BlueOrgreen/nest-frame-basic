@@ -4,8 +4,12 @@ import {
     FindTreeOptions,
     ObjectLiteral,
     SelectQueryBuilder,
+    Repository,
+    TreeRepository,
 } from 'typeorm';
 
+import { BaseRepository } from './base/repository';
+import { BaseTreeRepository } from './base/tree.repository';
 // import { Arguments } from 'yargs';
 
 // import { Configure } from '../config/configure';
@@ -135,3 +139,11 @@ type ServiceListQueryOptionNotWithTrashed<E extends ObjectLiteral> = Omit<
 
 
 
+/**
+ * Repository类型
+ */
+export type RepositoryType<E extends ObjectLiteral> =
+    | Repository<E>
+    | TreeRepository<E>
+    | BaseRepository<E>
+    | BaseTreeRepository<E>;
